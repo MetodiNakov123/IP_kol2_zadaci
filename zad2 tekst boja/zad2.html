@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zad2 JSON</title>
+    <script src="jquery-3.4.1.js"></script>
+</head>
+<body>
+
+<p>Jijfsilkfjiskle egjslejg oijg jesijgpe peg epfsjgpv jpoj psj ps jps j jsisgj ios jios jis jios jiosf jiosfj iofjv
+    Jijfsilkfjiskle egjslejg oijg jesijgpe peg epfsjgpv jpoj psj ps jps j jsisgj ios jios jis jios jiosf jiosfj iofjv
+    Jijfsilkfjiskle egjslejg oijg jesijgpe peg epfsjgpv jpoj psj ps jps j jsisgj ios jios jis jios jiosf jiosfj iofjv
+    Jijfsilkfjiskle egjslejg oijg jesijgpe peg epfsjgpv jpoj psj ps jps j jsisgj ios jios jis jios jiosf jiosfj iofjv
+    Jijfsilkfjiskle egjslejg oijg jesijgpe peg epfsjgpv jpoj psj ps jps j jsisgj ios jios jis jios jiosf jiosfj iofjv </p>
+
+<div id="container"></div>
+
+<script>
+
+    let json = '[{"name":"color", "vrednosti" : ["red", "blue", "white"]}, {"name":"width", "vrednosti":["200px", "400px", "700px"]}, {"name":"backgroung", "vrednosti": ["red", "blue", "green"]}]';
+    let obj = JSON.parse(json);
+    //console.log(obj);
+    //console.log(obj[0].vrednosti[0]);
+
+    let container = document.getElementById("container");
+
+    for(let i=0; i<obj.length; i++){
+        container.innerHTML += obj[i].name;
+        container.innerHTML += `<select id=${obj[i].name} onchange="smeni(this)">`;
+        for(let j=0; j<obj[i].vrednosti.length; j++){
+            let option = document.createElement("option");
+            option.setAttribute("value", obj[i].vrednosti[j]);
+            option.innerHTML = obj[i].vrednosti[j];
+            document.getElementById(obj[i].name).appendChild(option);
+        }
+
+    }
+
+    function smeni(elem) {
+        if (elem.getAttribute("id") == "color"){
+            document.getElementsByTagName("p")[0].style.color = elem.options[elem.selectedIndex].text;
+        }
+
+        if (elem.getAttribute("id") == "width"){
+            document.getElementsByTagName("p")[0].style.width = elem.options[elem.selectedIndex].text;
+        }
+
+        if (elem.getAttribute("id") == "backgroung"){
+            document.getElementsByTagName("p")[0].style.backgroundColor = elem.options[elem.selectedIndex].text;
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

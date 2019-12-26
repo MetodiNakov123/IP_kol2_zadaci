@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca3</title>
+
+    <script src="jquery-3.4.1.js"></script>
+
+    <style>
+        .boi{
+            float:left;
+            width: 70px;
+            height: 70px;
+        }
+    </style>
+
+</head>
+<body>
+
+<label>Color</label><br/>
+<input type="text" id="colors">
+<br/><br/>
+
+<label>Delimiter</label><br/>
+<input type="text" id="delimiter">
+<br/><br/>
+
+<button onclick="draw()">Draw</button> <br/><br/>
+
+<div id="container"></div>
+
+
+
+<script>
+
+    let container = document.getElementById("container");
+
+    function draw() {
+        let text = document.getElementById("colors").value;
+        let delimiter = document.getElementById("delimiter").value;
+        if (text == "" || delimiter == ""){
+            return;
+        }
+
+        let listColors = text.split(delimiter);
+        //console.log(listColors);
+
+        for(let i=0; i<listColors.length; i++){
+            let div = document.createElement("div");
+            div.setAttribute("class", "boi");
+            div.style.backgroundColor = listColors[i];
+            div.setAttribute("boja", listColors[i]);
+            div.setAttribute("onclick", "brisi(this)");
+            container.appendChild(div);
+        }
+
+    }
+
+
+    function brisi(elem) {
+        elem.parentNode.removeChild(elem);
+
+        let boja = elem.getAttribute("boja");
+        //console.log(boja);
+
+        let text = document.getElementById("colors").value;
+        let delimiter = document.getElementById("delimiter").value;
+        let listColors = text.split(delimiter);
+        listColors.splice(listColors.indexOf(boja),1);
+        document.getElementById("colors").value = listColors.join(delimiter);
+
+    }
+
+</script>
+
+
+</body>
+</html>

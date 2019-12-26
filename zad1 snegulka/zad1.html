@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery-3.4.1.js"></script>
+    <title>Snegulki</title>
+</head>
+<body>
+
+<img src="sneg1.jpg">
+<img src="sneg2.jpg">
+<img src="sneg3.jpg">
+<img src="sneg4.jpg">
+<img src="sneg5.jpg">
+
+<script>
+    let imgs = $("img");
+
+    for(let i=0; i<imgs.length; i++){
+        fall(imgs[i]);
+    }
+
+    function fall(elem) {
+        //console.log(elem);
+        let leftp = Math.random()*1200 + "px";
+        $(elem).css({"position": 'absolute', "top" : "-200px", "width" : "150px", "height" : "150px", "left" : leftp});
+        // elem.style.position = "absolute";
+        // elem.style.top = "-200px";
+        // elem.style.width = "150px";
+        // elem.style.height = "150px";
+        //elem.style.left = leftp;
+
+        let speed = (Math.random()*0.8)*42000;
+        $(elem).animate({top: '480px'}, speed, function () {
+            fall(this)
+        })
+
+    }
+
+</script>
+
+</body>
+</html>
